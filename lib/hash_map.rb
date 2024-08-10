@@ -24,7 +24,11 @@ class HashMap
 
   def get(key)
     index = hash(key)
-    buckets[index].value
+    if @buckets[index].nil?
+      nil
+    else
+      @buckets[index].value
+    end
   end
 
   def has?(key)
