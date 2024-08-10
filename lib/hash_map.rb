@@ -48,7 +48,12 @@ class HashMap
     elsif @buckets[index].key == key
       @buckets[index].value
     else
-      @buckets[index].value if @buckets[index.key] == key while @buckets[index].link
+      current_node = @buckets[index]
+      while current_node
+        return current_node.value if current_node.key == key
+
+        current_node = current_node.link
+      end
       nil
     end
   end
