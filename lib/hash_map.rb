@@ -10,5 +10,31 @@ class HashMap
        
     hash_code
   end
+  def set(key,value)
+  end
+
+  def get(key)
+  end
+
+  def has?(key)
+  end
+
+  def remove(key)
+  end
+
+  def length
+  end
+
+  def clear
+  end
+
+  def keys
+  end
+
+  def values
+  end
+
+  def entries
+  end
  
 end
