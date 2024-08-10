@@ -7,7 +7,7 @@ class HashMap
     @buckets = Array.new(16)
     @capacity = @buckets.length
     @load_factor = 0.8
-    @entries = 0
+    @entry = 0
   end
 
   def hash(key)
@@ -26,7 +26,7 @@ class HashMap
     current_node = @buckets[index]
     if current_node.nil?
       @buckets[index] = Node.new(key, value)
-      @entries += 1
+      @entry += 1
     else
       while current_node.link
         if current_node.key == key
@@ -41,7 +41,7 @@ class HashMap
         current_node.value = value
       else
         current_node.link = Node.new(key, value)
-        @entries += 1
+        @entry += 1
       end
     end
   end
@@ -91,5 +91,10 @@ class HashMap
   end
 
   def entries
+    @entry
+  end
+
+  def grow?
+    entries >= (@load_factor * @capacity).to_i
   end
 end
