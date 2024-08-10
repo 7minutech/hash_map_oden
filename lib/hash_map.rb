@@ -1,4 +1,6 @@
 class HashMap
+  attr_accessor :buckets
+
   def initialize
     @buckets = Array.new(16)
   end
