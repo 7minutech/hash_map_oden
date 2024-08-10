@@ -19,7 +19,7 @@ class HashMap
     index = hash(key)
     raise IndexError if index.negative? || index >= @buckets.length
 
-    @buckets[index] = value
+    @buckets[index] = Node.new(key, value)
   end
 
   def get(key)
