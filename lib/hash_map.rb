@@ -27,7 +27,15 @@ class HashMap
     if @buckets[index].nil?
       nil
     else
-      @buckets[index].value
+      if @buckets[index].key == key
+        @buckets[index].value
+      else
+        while @buckets[index].link
+          if @buckets[index.key] == key
+            @buckets[index].value
+          end
+        end
+        nil
     end
   end
 
