@@ -1,3 +1,4 @@
+require_relative "node"
 class HashMap
   attr_accessor :buckets
 
