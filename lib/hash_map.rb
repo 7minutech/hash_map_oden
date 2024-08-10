@@ -59,6 +59,16 @@ class HashMap
   end
 
   def has?(key)
+    index = hash(key)
+    current_node = @buckets[index]
+    # binding.pry
+    while current_node
+      return true if current_node.key == key
+
+      current_node = current_node.link
+
+    end
+    false
   end
 
   def remove(key)
