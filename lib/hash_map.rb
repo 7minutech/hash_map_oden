@@ -5,6 +5,9 @@ class HashMap
 
   def initialize
     @buckets = Array.new(16)
+    @capacity = @buckets.length
+    @load_factor = 0.8
+    @entry = 0
   end
 
   def hash(key)
@@ -61,7 +64,6 @@ class HashMap
   def has?(key)
     index = hash(key)
     current_node = @buckets[index]
-    # binding.pry
     while current_node
       return true if current_node.key == key
 
