@@ -1,6 +1,6 @@
 class HashMap
   def initialize
-    
+    @buckets = Array.new(16)
   end
   def hash(key)
     hash_code = 0
@@ -11,6 +11,10 @@ class HashMap
     hash_code % 16
   end
   def set(key,value)
+    index = hash(key)
+    raise IndexError if index.negative? || index >= @buckets.length
+    @buckets[index] = value
+
 
   end
 
