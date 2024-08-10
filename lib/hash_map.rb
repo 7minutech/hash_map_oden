@@ -94,6 +94,15 @@ class HashMap
     @entry
   end
 
+  def grow
+    return unless grow?
+
+    new_buckets = Array.new(@buckets.length * 2)
+    @buckets.each_with_index do |node, index|
+      new_buckets[index] = node
+    end
+  end
+
   def grow?
     entries >= (@load_factor * @capacity).to_i
   end
