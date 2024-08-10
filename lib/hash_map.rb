@@ -17,7 +17,8 @@ class HashMap
 
   def set(key, value)
     index = hash(key)
-    raise IndexError if index.negative? || index >= @buckets.length
+    raise IndexError if index.negative? || index >= @buckets.lengt
+
     if @buckets[index].nil?
       @buckets[index] = Node.new(key, value)
     else
@@ -30,23 +31,19 @@ class HashMap
           current_node = current_node.link
         end
       end
-      current_node.link = Node.new(key,value)
+      current_node.link = Node.new(key, value)
+    end
   end
 
   def get(key)
     index = hash(key)
     if @buckets[index].nil?
       nil
+    elsif @buckets[index].key == key
+      @buckets[index].value
     else
-      if @buckets[index].key == key
-        @buckets[index].value
-      else
-        while @buckets[index].link
-          if @buckets[index.key] == key
-            @buckets[index].value
-          end
-        end
-        nil
+      @buckets[index].value if @buckets[index.key] == key while @buckets[index].link
+      nil
     end
   end
 
