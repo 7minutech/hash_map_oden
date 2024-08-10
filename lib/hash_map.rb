@@ -1,4 +1,5 @@
 require_relative "node"
+require "pry-byebug"
 class HashMap
   attr_accessor :buckets
 
@@ -17,12 +18,12 @@ class HashMap
 
   def set(key, value)
     index = hash(key)
-    raise IndexError if index.negative? || index >= @buckets.lengt
+    raise IndexError if index.negative? || index >= @buckets.length
 
-    if @buckets[index].nil?
+    current_node = @buckets[index]
+    if current_node.nil?
       @buckets[index] = Node.new(key, value)
     else
-      current_node = @buckets[index]
       while current_node.link
         if current_node.key == key
           current_node.value = value
@@ -31,7 +32,12 @@ class HashMap
           current_node = current_node.link
         end
       end
-      current_node.link = Node.new(key, value)
+      # for last node in bucket
+      if current_node.key == key
+        current_node.value = value
+      else
+        current_node.link = Node.new(key, value)
+      end
     end
   end
 
