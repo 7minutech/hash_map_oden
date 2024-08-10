@@ -1,7 +1,7 @@
 require_relative "node"
 require "pry-byebug"
 class HashMap
-  attr_accessor :buckets
+  attr_accessor :buckets, :entry
 
   def initialize
     @buckets = Array.new(16)
@@ -98,13 +98,17 @@ class HashMap
   def grow
     return unless grow?
 
+    puts "time to grow"
+    puts @entry
     new_buckets = Array.new(@buckets.length * 2)
     @buckets.each_with_index do |node, index|
       new_buckets[index] = node
     end
+    @buckets = new_buckets
+    @capacity = @buckets.length
   end
 
   def grow?
-    entries >= (@load_factor * @capacity).to_i
+    @entry >= (@load_factor * @capacity).to_i
   end
 end
