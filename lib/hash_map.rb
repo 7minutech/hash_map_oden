@@ -20,7 +20,6 @@ class HashMap
   end
 
   def set(key, value)
-    grow
     index = hash(key)
     raise IndexError if index.negative? || index >= @buckets.length
 
