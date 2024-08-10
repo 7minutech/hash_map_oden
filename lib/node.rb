@@ -8,10 +8,12 @@ class Node
   end
 
   def to_s
-    if nil?
-      "nil"
-    else
-      "[#{@key}, #{@value}]"
+    current_node = self
+    output = []
+    while current_node
+      output.push("[#{current_node.key}, #{current_node.value}]")
+      current_node = current_node.link
     end
+    output.join(" -> ")
   end
 end
