@@ -18,8 +18,19 @@ class HashMap
   def set(key, value)
     index = hash(key)
     raise IndexError if index.negative? || index >= @buckets.length
-
-    @buckets[index] = Node.new(key, value)
+    if @buckets[index].nil?
+      @buckets[index] = Node.new(key, value)
+    else
+      current_node = @buckets[index]
+      current_link = current_node.link
+      while current_link
+        current_link = @buckets[index].link
+      end
+      if @buckets[index].key == key
+        @buckets[index].value = value
+      else
+        current_node.link = Node.new(key,value)
+      end
   end
 
   def get(key)
