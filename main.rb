@@ -1,10 +1,9 @@
 require_relative "lib/hash_map"
-animals = HashMap.new
-animals.set("henry", "is a cool guy")
-animals.buckets.each do |key_value_pair|
-  if key_value_pair.nil?
-    puts " [nil]"
-  else
-    puts key_value_pair
-  end
+humans = HashMap.new
+humans.set("henry", "is a cool guy")
+humans.buckets.each do |key_value_pair|
+  next if key_value_pair.nil?
+
+  puts key_value_pair
 end
+p humans.get("henry")
