@@ -23,6 +23,8 @@ class HashMap
   end
 
   def get(key)
+    index = hash(key)
+    buckets[index].value
   end
 
   def has?(key)
