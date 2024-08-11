@@ -164,6 +164,16 @@ class HashMap
   end
 
   def values
+    value_arr = []
+    @buckets.each do |node|
+      next if node.nil?
+
+      while node
+        value_arr.push(node.value)
+        node = node.link
+      end
+    end
+    value_arr
   end
 
   def entries
