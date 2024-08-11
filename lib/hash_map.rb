@@ -147,6 +147,7 @@ class HashMap
     (0...@buckets.length).each do |index|
       @buckets[index] = nil
     end
+    @entry = 0
   end
 
   def keys
