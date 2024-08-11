@@ -13,4 +13,19 @@ test.set("jacket", "blue")
 test.set("kite", "pink")
 test.set("lion", "golden")
 
+test.entries
+test.set("lion", "purple")
+puts ""
+test.entries
+test.set("moon", "silver")
+puts ""
+puts test.get("moon")
+puts test.has?("moon")
+test.remove("moon")
+puts ""
+test.entries
+puts test.length
+puts test.keys
 puts test.values
+test.clear
+test.entries
