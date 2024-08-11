@@ -92,6 +92,49 @@ class HashMap
   end
 
   def remove(key)
+    index = hash(key)
+    # if bucket is empty no key is there
+    if @buckets[index].nil?
+      nil
+    # need to check to see if the first node in bucket
+    # matches the key
+    elsif @buckets[index].key == key
+      current_node = @buckets[index]
+      # if the first node in the bucket
+      # points to nil that is the only node in the bucket
+      # only need to make that node nil
+      @buckets[index] = if current_node.link.nil?
+                          nil
+                        # only need to replace the head of the linked list
+                        # with the next node
+                        else
+                          current_node.link
+                        end
+      # if a non empty bucket is found
+      # need to walk through nodes to find the key value pair
+    else
+      current_node = @buckets[index]
+      prev_node = current_node
+      while current_node
+        if current_node.key == key
+          # node before last node needs to point to nill
+          # to remove node
+          prev_node.link = if current_node.link.nil?
+                             nil
+                           else
+                             # node between tow nodes needs the node
+                             # behind it to point to the node in front of it
+                             # to remove node
+                             current_node.link
+                           end
+          return
+        else
+          prev_node = current_node
+          current_node = current_node.link
+        end
+        nil
+      end
+    end
   end
 
   def length
