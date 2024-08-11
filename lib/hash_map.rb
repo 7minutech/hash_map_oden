@@ -81,6 +81,8 @@ class HashMap
 
   def has?(key)
     index = hash(key)
+    raise IndexError if index.negative? || index >= @buckets.length
+
     current_node = @buckets[index]
     # must walk through all buckets with one or
     # more nodes to find key
