@@ -57,6 +57,8 @@ class HashMap
 
   def get(key)
     index = hash(key)
+    raise IndexError if index.negative? || index >= @buckets.length
+
     # if bucket is empty no key is there
     if @buckets[index].nil?
       nil
