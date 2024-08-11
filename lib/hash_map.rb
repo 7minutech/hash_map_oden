@@ -144,6 +144,9 @@ class HashMap
   end
 
   def clear
+    (0...@buckets.length).each do |index|
+      @buckets[index] = nil
+    end
   end
 
   def keys
