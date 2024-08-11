@@ -27,6 +27,7 @@ class HashMap
     if current_node.nil?
       @buckets[index] = Node.new(key, value)
       @entry += 1
+      grow
     else
       while current_node.link
         if current_node.key == key
@@ -42,6 +43,7 @@ class HashMap
       else
         current_node.link = Node.new(key, value)
         @entry += 1
+        grow
       end
     end
   end
@@ -97,12 +99,16 @@ class HashMap
   def grow
     return unless grow?
 
-    new_buckets = Array.new(@buckets.length * 2)
-    @buckets.each_with_index do |node, index|
-      new_buckets[index] = node
-    end
-    @buckets = new_buckets
+    @entry = 0
+    copy_of_buckets = @buckets
+    @buckets = Array.new(@buckets.length * 2)
     @capacity = @buckets.length
+    copy_of_buckets.each do |node|
+      while node
+        set(node.key, node.value) unless node.nil?
+        node = node.link
+      end
+    end
   end
 
   def grow?
