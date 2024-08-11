@@ -106,6 +106,6 @@ class HashMap
   end
 
   def grow?
-    @entry >= (@load_factor * @capacity).to_i
+    @entry > (@load_factor * @capacity).to_i
   end
 end
