@@ -138,6 +138,7 @@ class HashMap
   end
 
   def length
+    @entry
   end
 
   def clear
