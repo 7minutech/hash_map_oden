@@ -153,7 +153,20 @@ class HashMap
   end
 
   def entries
-    @entry
+    output = []
+    @buckets.each do |node|
+      next if node.nil?
+
+      str = ""
+      while node
+        str += "[#{node.key}, #{node.value}]"
+        output.push(str)
+        node = node.link
+        str = ""
+      end
+    end
+    output.join(",")
+    output.map { |node| puts node }
   end
 
   def grow
