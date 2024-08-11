@@ -99,6 +99,7 @@ class HashMap
     # need to check to see if the first node in bucket
     # matches the key
     elsif @buckets[index].key == key
+      @entry -= 1
       current_node = @buckets[index]
       # if the first node in the bucket
       # points to nil that is the only node in the bucket
@@ -117,6 +118,7 @@ class HashMap
       prev_node = current_node
       while current_node
         if current_node.key == key
+          @entry -= 1
           # node before last node needs to point to nill
           # to remove node
           prev_node.link = if current_node.link.nil?
